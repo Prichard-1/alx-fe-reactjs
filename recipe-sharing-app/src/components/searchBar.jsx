@@ -1,3 +1,4 @@
+// src/components/SearchBar.jsx
 import React from 'react';
 import { useRecipeStore } from './recipeStore';
 
@@ -12,3 +13,6 @@ const SearchBar = () => {
     />
   );
 };
+
+export default SearchBar;
+
