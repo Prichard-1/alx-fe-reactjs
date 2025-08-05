@@ -4,6 +4,7 @@ import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import DeleteRecipeButton from './components/DeleteRecipeButton';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           element={
             <>
               <h1>Recipe Sharing App</h1>
+              <SearchBar />
               <AddRecipeForm />
               <RecipeList />
             </>
