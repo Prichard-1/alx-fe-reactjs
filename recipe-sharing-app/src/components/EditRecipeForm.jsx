@@ -7,7 +7,7 @@ const EditRecipeForm = ({ recipe }) => {
   const [description, setDescription] = useState(recipe.description);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // 🔐 Required to block page reload
     updateRecipe({ id: recipe.id, title, description });
   };
 
