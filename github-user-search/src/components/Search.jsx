@@ -54,11 +54,11 @@ const Search = () => {
       </form>
 
       {loading && <p className="mt-4 text-gray-600">Loading...</p>}
-      {error && <p className="mt-4 text-red-500">Looks like we cant find the user</p>}
+      {error && <p className="mt-4 text-red-500">Looks like we can't find the user</p>}
       {userData.length > 0 && (
         <div className="mt-6 space-y-4">
           {userData.map((user) => (
-            <div key={user.id} className="border p-4 rounded shadow">
+            <div key={user.id} className="border p-4 rounded mb-2 shadow">
               <img src={user.avatar_url} alt="avatar" className="w-16 h-16 rounded-full" />
               <p className="font-semibold">{user.login}</p>
               <a
