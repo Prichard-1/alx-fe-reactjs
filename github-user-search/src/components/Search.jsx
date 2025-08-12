@@ -1,5 +1,7 @@
+
+
 import React, { useState } from 'react';
-import axios from 'axios';
+import { fetchUserData } from '../services/githubService';
 
 const Search = () => {
   const [username, setUsername] = useState('');
@@ -12,8 +14,8 @@ const Search = () => {
     setLoading(true);
     setError(false);
     try {
-      const response = await axios.get(`https://api.github.com/users/${username}`);
-      setUserData(response.data);
+      const data = await fetchUserData(username);
+      setUserData(data);
     } catch (err) {
       setError(true);
       setUserData(null);
@@ -43,9 +45,6 @@ const Search = () => {
         <div className="mt-4">
           <img src={userData.avatar_url} alt="avatar" className="w-24 h-24 rounded-full" />
           <p>{userData.login}</p>
-          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
-            View Profile
-          </a>
         </div>
       )}
     </div>
