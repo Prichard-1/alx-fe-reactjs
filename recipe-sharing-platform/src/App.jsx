@@ -1,7 +1,8 @@
-// src/App.jsx
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
-import recipeData from './data.json'; // Make sure data.json is inside src/
+import RecipeDetail from './components/RecipeDetail';
+import recipeData from './data.json'; // Ensure this file is inside src/
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -11,9 +12,12 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <HomePage recipes={recipes} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage recipes={recipes} />} />
+        <Route path="/recipe/:id" element={<RecipeDetail recipes={recipes} />} />
+      </Routes>
+    </Router>
   );
 }
 
