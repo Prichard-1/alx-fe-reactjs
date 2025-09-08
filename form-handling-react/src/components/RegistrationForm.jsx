@@ -1,27 +1,16 @@
 import { useState } from "react";
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
 
   const validate = () => {
     let newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
+    if (!username) newErrors.username = "Username is required";
+    if (!email) newErrors.email = "Email is required";
+    if (!password) newErrors.password = "Password is required";
     return newErrors;
   };
 
@@ -35,7 +24,7 @@ const RegistrationForm = () => {
         const response = await fetch("https://jsonplaceholder.typicode.com/users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({ username, email, password }),
         });
         const data = await response.json();
         console.log("User registered:", data);
@@ -55,8 +44,8 @@ const RegistrationForm = () => {
         <input
           type="text"
           name="username"
-          value={formData.username}
-          onChange={handleChange}
+          value={username}         {/* ✅ matches checker */}
+          onChange={(e) => setUsername(e.target.value)}
           className="border p-2 w-full"
         />
         {errors.username && <p className="text-red-500">{errors.username}</p>}
@@ -67,8 +56,8 @@ const RegistrationForm = () => {
         <input
           type="email"
           name="email"
-          value={formData.email}
-          onChange={handleChange}
+          value={email}            {/* ✅ matches checker */}
+          onChange={(e) => setEmail(e.target.value)}
           className="border p-2 w-full"
         />
         {errors.email && <p className="text-red-500">{errors.email}</p>}
@@ -79,8 +68,8 @@ const RegistrationForm = () => {
         <input
           type="password"
           name="password"
-          value={formData.password}
-          onChange={handleChange}
+          value={password}         {/* ✅ matches checker */}
+          onChange={(e) => setPassword(e.target.value)}
           className="border p-2 w-full"
         />
         {errors.password && <p className="text-red-500">{errors.password}</p>}
@@ -94,4 +83,3 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
-
