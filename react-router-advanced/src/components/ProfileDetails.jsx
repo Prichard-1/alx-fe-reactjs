@@ -1,9 +1,8 @@
 const ProfileDetails = () => (
   <div>
     <h2>Profile Details</h2>
-    <p>This section shows detailed profile information.</p>
+    <p>Details about the user profile.</p>
   </div>
 );
 
 export default ProfileDetails;
-

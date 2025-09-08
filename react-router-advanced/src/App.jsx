@@ -1,9 +1,18 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Profile from "./components/Profile";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
 import BlogPost from "./components/BlogPost";
 import ProtectedRoute from "./components/ProtectedRoute";
+
+const Home = () => (
+  <div>
+    <h1>Home Page</h1>
+    <nav className="flex gap-4 my-2">
+      <Link to="/profile">Profile</Link>
+      <Link to="/blog/123">Blog Post 123</Link>
+      <Link to="/blog/456">Blog Post 456</Link>
+    </nav>
+  </div>
+);
 
 const Login = () => {
   const login = () => {
@@ -21,17 +30,6 @@ const Login = () => {
   );
 };
 
-const Home = () => (
-  <div>
-    <h1>Home Page</h1>
-    <nav className="flex gap-4 my-2">
-      <Link to="/profile">Profile</Link>
-      <Link to="/blog/123">Blog Post 123</Link>
-      <Link to="/blog/456">Blog Post 456</Link>
-    </nav>
-  </div>
-);
-
 function App() {
   return (
     <Router>
@@ -46,11 +44,7 @@ function App() {
               <Profile />
             </ProtectedRoute>
           }
-        >
-          {/* Nested Routes */}
-          <Route path="details" element={<ProfileDetails />} />
-          <Route path="settings" element={<ProfileSettings />} />
-        </Route>
+        />
 
         {/* Dynamic Route */}
         <Route path="/blog/:postId" element={<BlogPost />} />
@@ -63,4 +57,3 @@ function App() {
 }
 
 export default App;
-
