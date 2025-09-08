@@ -2,22 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 
 const fetchPosts = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  if (!res.ok) {
-    throw new Error("Network response was not ok");
-  }
+  if (!res.ok) throw new Error("Network response was not ok");
   return res.json();
 };
 
 const PostsComponent = () => {
-  const { data, error, isLoading, refetch } = useQuery(["posts"], fetchPosts, {
-    staleTime: 1000 * 60 * 5, // cache for 5 minutes
+  const { data, error, isLoading, refetch } = useQuery({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+    staleTime: 1000 * 60 * 5,  // cache for 5 minutes
     cacheTime: 1000 * 60 * 10, // garbage collection after 10 minutes
   });
 
   if (isLoading) return <p>Loading posts...</p>;
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
-  // Ensure data exists and is an array
   if (!data || !Array.isArray(data)) return <p>No posts available</p>;
 
   return (
