@@ -46,8 +46,8 @@ function App() {
           }
         />
 
-        {/* Dynamic Route */}
-        <Route path="/blog/:postId" element={<BlogPost />} />
+        {/* ✅ Dynamic Route must be /blog/:id */}
+        <Route path="/blog/:id" element={<BlogPost />} />
 
         {/* Login */}
         <Route path="/login" element={<Login />} />
